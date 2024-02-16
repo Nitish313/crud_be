@@ -1,6 +1,7 @@
 class EmployeesController < ApplicationController
   def index
-    render json: Employee.all, status: 200
+    employees = params[:q].present? ? Employee.search(params[:q]) : Employee.all
+    render json: employees, status: 200
   end
 
   def show
